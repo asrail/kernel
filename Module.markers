@@ -1,0 +1,24 @@
+core_marker_format	vmlinux	name %s format %s
+read_lock_acquired	vmlinux	read lock %p
+read_lock_bh_acquired	vmlinux	read lock bh %p
+read_lock_irq_acquired	vmlinux	read lock irq %p
+read_lock_irqsave_acquired	vmlinux	read lock irqsave %p
+read_trylock_acquired	vmlinux	read trylock %p
+read_trylock_entry	vmlinux	read trylock %p
+read_trylock_notacquired	vmlinux	read trylock %p
+spin_lock_acquired	vmlinux	spin lock %p
+spin_lock_bh_acquired	vmlinux	spin lock bh %p
+spin_lock_irq_acquired	vmlinux	spin lock irq %p
+spin_lock_irqsave_acquired	vmlinux	spin lock irqsave %p
+spin_lock_irqsave_nested_acquired	vmlinux	spin lock irqsave nested %p
+spin_lock_nested_acquired	vmlinux	spin lock nested %p
+spin_trylock_acquired	vmlinux	spin trylock %p
+spin_trylock_entry	vmlinux	spin trylock %p
+spin_trylock_notacquired	vmlinux	spin trylock %p
+write_lock_acquired	vmlinux	write lock %p
+write_lock_bh_acquired	vmlinux	write lock bh %p
+write_lock_irq_acquired	vmlinux	write lock irq %p
+write_lock_irqsave_acquired	vmlinux	write lock irqsave %p
+write_trylock_acquired	vmlinux	write trylock %p
+write_trylock_entry	vmlinux	write trylock %p
+write_trylock_notacquired	vmlinux	write trylock %p
