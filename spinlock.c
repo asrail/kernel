@@ -78,7 +78,7 @@ EXPORT_SYMBOL(_write_trylock);
 
 void __lockfunc _read_lock(rwlock_t *lock)
 {
-        trace_mark(read_lock_notacquired, "read lock %p", lock);
+        trace_mark(read_lock_acquired, "read lock %p", lock);
 	preempt_disable();
 	rwlock_acquire_read(&lock->dep_map, 0, 0, _RET_IP_);
 	LOCK_CONTENDED(lock, _raw_read_trylock, _raw_read_lock);
@@ -89,6 +89,7 @@ unsigned long __lockfunc _spin_lock_irqsave(spinlock_t *lock)
 {
 	unsigned long flags;
 
+        trace_mark(spin_lock_irqsave_acquired, "spin lock irqsave %p", lock);
 	local_irq_save(flags);
 	preempt_disable();
 	spin_acquire(&lock->dep_map, 0, 0, _RET_IP_);
@@ -108,6 +109,7 @@ EXPORT_SYMBOL(_spin_lock_irqsave);
 
 void __lockfunc _spin_lock_irq(spinlock_t *lock)
 {
+        trace_mark(spin_lock_irq_acquired, "spin lock irq %p", lock);
 	local_irq_disable();
 	preempt_disable();
 	spin_acquire(&lock->dep_map, 0, 0, _RET_IP_);
@@ -117,6 +119,7 @@ EXPORT_SYMBOL(_spin_lock_irq);
 
 void __lockfunc _spin_lock_bh(spinlock_t *lock)
 {
+        trace_mark(spin_lock_bh_acquired, "spin lock bh %p", lock);
 	local_bh_disable();
 	preempt_disable();
 	spin_acquire(&lock->dep_map, 0, 0, _RET_IP_);
@@ -128,6 +131,7 @@ unsigned long __lockfunc _read_lock_irqsave(rwlock_t *lock)
 {
 	unsigned long flags;
 
+        trace_mark(read_lock_irqsave_acquired, "read lock irqsave %p", lock);
 	local_irq_save(flags);
 	preempt_disable();
 	rwlock_acquire_read(&lock->dep_map, 0, 0, _RET_IP_);
@@ -138,6 +142,7 @@ EXPORT_SYMBOL(_read_lock_irqsave);
 
 void __lockfunc _read_lock_irq(rwlock_t *lock)
 {
+        trace_mark(read_lock_irq_acquired, "read lock irq %p", lock);
 	local_irq_disable();
 	preempt_disable();
 	rwlock_acquire_read(&lock->dep_map, 0, 0, _RET_IP_);
@@ -147,6 +152,7 @@ EXPORT_SYMBOL(_read_lock_irq);
 
 void __lockfunc _read_lock_bh(rwlock_t *lock)
 {
+        trace_mark(read_lock_bh_acquired, "read lock bh %p", lock);
 	local_bh_disable();
 	preempt_disable();
 	rwlock_acquire_read(&lock->dep_map, 0, 0, _RET_IP_);
@@ -158,6 +164,7 @@ unsigned long __lockfunc _write_lock_irqsave(rwlock_t *lock)
 {
 	unsigned long flags;
 
+        trace_mark(write_lock_irqsave_acquired, "write lock irqsave %p", lock);
 	local_irq_save(flags);
 	preempt_disable();
 	rwlock_acquire(&lock->dep_map, 0, 0, _RET_IP_);
@@ -168,6 +175,7 @@ EXPORT_SYMBOL(_write_lock_irqsave);
 
 void __lockfunc _write_lock_irq(rwlock_t *lock)
 {
+        trace_mark(write_lock_irq_acquired, "write lock irq %p", lock);
 	local_irq_disable();
 	preempt_disable();
 	rwlock_acquire(&lock->dep_map, 0, 0, _RET_IP_);
@@ -177,6 +185,7 @@ EXPORT_SYMBOL(_write_lock_irq);
 
 void __lockfunc _write_lock_bh(rwlock_t *lock)
 {
+        trace_mark(write_lock_bh_acquired, "write lock bh %p", lock);
 	local_bh_disable();
 	preempt_disable();
 	rwlock_acquire(&lock->dep_map, 0, 0, _RET_IP_);
